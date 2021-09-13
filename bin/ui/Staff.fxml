@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="68.0" layoutY="46.0" text="Agregar un empleado:">
@@ -35,16 +34,16 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="178.0" layoutY="116.0" />
-      <TextField layoutX="188.0" layoutY="160.0" />
-      <TextField layoutX="188.0" layoutY="204.0" />
-      <DatePicker layoutX="213.0" layoutY="250.0" />
-      <Button layoutX="68.0" layoutY="330.0" mnemonicParsing="false" text="REGISTRAR EMPLEADO">
+      <TextField fx:id="nameTF" layoutX="178.0" layoutY="116.0" />
+      <TextField fx:id="idTF" layoutX="188.0" layoutY="160.0" />
+      <TextField fx:id="passTF" layoutX="188.0" layoutY="204.0" />
+      <DatePicker fx:id="birthdayDT" layoutX="213.0" layoutY="250.0" />
+      <Button fx:id="registerBTN" layoutX="57.0" layoutY="330.0" mnemonicParsing="false" text="REGISTRAR EMPLEADO">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="423.0" layoutY="330.0" mnemonicParsing="false" text="INICIAR SESIÓN">
+      <Button fx:id="signBTN" layoutX="423.0" layoutY="330.0" mnemonicParsing="false" text="INICIAR SESIÓN">
          <font>
             <Font size="14.0" />
          </font>
