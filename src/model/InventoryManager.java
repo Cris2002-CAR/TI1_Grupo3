@@ -27,10 +27,14 @@ public class InventoryManager {
 		return ingredients;
 	}
 
-	public void addIngredient(String name, String unit, double amount) {
+	public boolean addIngredient(String name, String unit, double amount) {
+		boolean filledAll = true;
+
 		if (name != null && unit != null && amount != 0) {
 			Ingredients newIngredient = new Ingredients(name, unit, amount);
 			ingredients.add(newIngredient);
-		}
+		} else
+			filledAll = false;
+		return filledAll;
 	}
 }

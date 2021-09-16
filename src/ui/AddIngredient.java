@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.InventoryManager;
 
@@ -47,7 +49,15 @@ public class AddIngredient extends Stage {
 			unit = unitInput.getText();
 			amount = Double.parseDouble(amountInput.getText());
 
-			inventoryData.addIngredient(name, unit, amount);
+			if (!inventoryData.addIngredient(name, unit, amount)) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Dialogo de error!");
+				alert.setHeaderText("Hay un problema con los datos ingresados");
+				alert.setContentText(
+						"Asegurese de ingresar los datos necesarios, recuerde que la cantidad solo se puede recibir en numeros");
+
+				alert.showAndWait();
+			}
 		});
 	}
 }
