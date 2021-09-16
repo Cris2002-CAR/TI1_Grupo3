@@ -27,14 +27,9 @@ public class InventoryManager {
 		return ingredients;
 	}
 
-	public boolean addIngredient(String name, String unit, double amount) {
-		boolean filledAll = true;
+	public void addIngredient(String name, String unit, double amount) {
 
-		if (name != null && unit != null && amount != 0) {
-			Ingredients newIngredient = new Ingredients(name, unit, amount);
-			ingredients.add(newIngredient);
-		} else
-			filledAll = false;
-		return filledAll;
+		Ingredients newIngredient = new Ingredients(name, unit, amount);
+		ingredients.add(newIngredient);
 	}
 }
