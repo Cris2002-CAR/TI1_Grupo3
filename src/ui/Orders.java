@@ -1,5 +1,7 @@
 package ui;
 
+import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,7 +19,7 @@ public class Orders extends Stage {
 
 	private Button delyBTN;
 
-	private Button closeBTN;
+	private Button logOutBTN;
 
 	private TableView<?> deliveryListTBV;
 
@@ -28,7 +30,7 @@ public class Orders extends Stage {
 	public Orders() {
 
 		try {
-			
+
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Orders.fxml"));
 			Parent root = loader.load();
 
@@ -39,16 +41,62 @@ public class Orders extends Stage {
 			invBTN = (Button) loader.getNamespace().get("invBTN");
 			menuBTN = (Button) loader.getNamespace().get("menuBTN");
 			delyBTN = (Button) loader.getNamespace().get("delyBTN");
-			closeBTN = (Button) loader.getNamespace().get("closeBTN");
+			logOutBTN = (Button) loader.getNamespace().get("logOutBTN");
 			changeStBTN = (Button) loader.getNamespace().get("changeStBTN");
 			addDeliveryBTN = (Button) loader.getNamespace().get("addDeliveryBTN");
-			
+
 			deliveryListTBV = (TableView) loader.getNamespace().get("deliveryListTBV");
 			
+			init();
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	private void init() {
+
+		invBTN.setOnAction(event -> {
+			showInventory();
+		});
+
+		listBTN.setOnAction(event -> {
+			try {
+				Staff listt = new Staff();
+				listt.viewList();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+
+		logOutBTN.setOnAction(event -> {
+			try {
+				Staff listt = new Staff();
+				listt.loadLogin();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+
+		menuBTN.setOnAction(event -> {
+			showMenu();
+		});
+
+	}
+
+	public void showMenu() {
+
+		Menu in = new Menu();
+		in.show();
+
+	}
+
+	public void showInventory() {
+
+		Inventory in = new Inventory();
+		in.show();
 	}
 
 }
