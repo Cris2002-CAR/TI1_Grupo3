@@ -84,5 +84,48 @@ public class Inventory extends Stage {
 			AddIngredient addWindow = new AddIngredient();
 			addWindow.show();
 		});
+
+		listBTN.setOnAction(event -> {
+			try {
+				Staff listt = new Staff();
+				listt.viewList();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+
+		closeBTN.setOnAction(event -> {
+			try {
+				Staff listt = new Staff();
+				listt.loadLogin();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+
+		menuBTN.setOnAction(event -> {
+			showMenu();
+		});
+
+		delyBTN.setOnAction(event -> {
+			showOrders();
+		});
 	}
+
+	public void showMenu() {
+
+		Menu in = new Menu();
+		in.show();
+
+	}
+
+	public void showOrders() {
+
+		Orders in = new Orders();
+		in.show();
+
+	}
+
 }
