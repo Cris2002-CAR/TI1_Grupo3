@@ -42,21 +42,16 @@ public class AddIngredient extends Stage {
 
 	public void init() {
 		addIngBtn.setOnAction(event -> {
-			String name, unit;
-			double amount;
 
-			name = nameInput.getText();
-			unit = unitInput.getText();
-			amount = Double.parseDouble(amountInput.getText());
+			if (nameInput != null && unitInput != null && amountInput != null) {
+				String name, unit;
+				double amount;
 
-			if (!inventoryData.addIngredient(name, unit, amount)) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Dialogo de error!");
-				alert.setHeaderText("Hay un problema con los datos ingresados");
-				alert.setContentText(
-						"Asegurese de ingresar los datos necesarios, recuerde que la cantidad solo se puede recibir en numeros");
-
-				alert.showAndWait();
+				name = nameInput.getText();
+				unit = unitInput.getText();
+				amount = Double.parseDouble(amountInput.getText());
+				
+				inventoryData.addIngredient(name, unit, amount);
 			}
 		});
 	}
