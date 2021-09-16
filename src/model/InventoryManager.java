@@ -3,38 +3,32 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class InventoryManager
-{
+public class InventoryManager {
 	private static InventoryManager instance;
-	
-	public static InventoryManager getInstance()
-	{
-		if(instance == null)
-		{
-			instance = new InventoryManager();;
+
+	public static InventoryManager getInstance() {
+		if (instance == null) {
+			instance = new InventoryManager();
+			;
 		}
-		
+
 		return instance;
 	}
-	
+
 	// Relationships
-	
+
 	ObservableList<Ingredients> ingredients;
-	
-	private InventoryManager()
-	{
+
+	private InventoryManager() {
 		ingredients = FXCollections.observableArrayList();
 	}
-	
-	public ObservableList<Ingredients> getInventoryData()
-	{
+
+	public ObservableList<Ingredients> getInventoryData() {
 		return ingredients;
 	}
-	
-	public void addIngredient(String name, String unit, double amount)
-	{
-		if(name != null && unit != null && amount != 0)
-		{
+
+	public void addIngredient(String name, String unit, double amount) {
+		if (name != null && unit != null && amount != 0) {
 			Ingredients newIngredient = new Ingredients(name, unit, amount);
 			ingredients.add(newIngredient);
 		}

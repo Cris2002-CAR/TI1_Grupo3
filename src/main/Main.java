@@ -12,8 +12,7 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception
-	{
+	public void start(Stage primaryStage) throws Exception {
 		Inventory window = new Inventory();
 		window.show();
 	}
