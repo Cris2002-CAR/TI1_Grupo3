@@ -12,9 +12,9 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
-		Inventory window = new Inventory();
-		window.show();
+	public void start(Stage primaryStage) throws Exception
+	{
+		
 	}
 
 }
