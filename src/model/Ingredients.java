@@ -1,17 +1,17 @@
 package model;
 
 public class Ingredients {
-	
+
 	private String name;
 	private String unit;
 	private double amount;
-	
+
 	public Ingredients() {
-		
+
 	}
 
 	public Ingredients(String name, String unit, double amount) {
-		
+
 		this.name = name;
 		this.unit = unit;
 		this.amount = amount;
@@ -40,6 +40,5 @@ public class Ingredients {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
-	
+
 }
