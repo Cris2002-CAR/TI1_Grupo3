@@ -1,6 +1,7 @@
 package model;
 
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class InventoryManager
 {
@@ -18,13 +19,24 @@ public class InventoryManager
 	
 	// Relationships
 	
-	ArrayList<Ingredients> ingredients;
+	ObservableList<Ingredients> ingredients;
 	
 	private InventoryManager()
 	{
-		ingredients = new ArrayList<>();
+		ingredients = FXCollections.observableArrayList();
 	}
 	
+	public ObservableList<Ingredients> getInventoryData()
+	{
+		return ingredients;
+	}
 	
-	
+	public void addIngredient(String name, String unit, double amount)
+	{
+		if(name != null && unit != null && amount != 0)
+		{
+			Ingredients newIngredient = new Ingredients(name, unit, amount);
+			ingredients.add(newIngredient);
+		}
+	}
 }
