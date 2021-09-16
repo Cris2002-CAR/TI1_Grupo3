@@ -16,14 +16,15 @@ public class InventoryManager
 		return instance;
 	}
 	
-	private InventoryManager()
-	{
-		
-	}
-	
 	// Relationships
 	
-	ArrayList<Ingredients> ingredients = new ArrayList<>();
+	ArrayList<Ingredients> ingredients;
+	
+	private InventoryManager()
+	{
+		ingredients = new ArrayList<>();
+	}
+	
 	
 	
 }
