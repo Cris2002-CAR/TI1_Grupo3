@@ -30,11 +30,7 @@ public class Inventory extends Stage {
 
 	private Button addBtn;
 
-	private Button increBtn;
-
-	private Button removeBtn;
-
-	private Button decreBtn;
+	private Button removeBtn, modifyIngredientsBtn, updateTable;
 
 	private InventoryManager inventoryData;
 
@@ -55,14 +51,14 @@ public class Inventory extends Stage {
 			delyBTN = (Button) loader.getNamespace().get("delyBTN");
 			closeBTN = (Button) loader.getNamespace().get("closeBTN");
 			addBtn = (Button) loader.getNamespace().get("addBtn");
-			increBtn = (Button) loader.getNamespace().get("increBtn");
 			removeBtn = (Button) loader.getNamespace().get("removeBtn");
-			decreBtn = (Button) loader.getNamespace().get("decreBtn");
+			modifyIngredientsBtn = (Button) loader.getNamespace().get("modifyIngredientsBtn");
+			updateTable = (Button) loader.getNamespace().get("updateTable");
 
 			inventoryTBV = (TableView) loader.getNamespace().get("inventoryTBV");
 
 			init();
-
+			
 			TableColumn nameCol = new TableColumn("Name:");
 			TableColumn unitCol = new TableColumn("Unit:");
 			TableColumn amountCol = new TableColumn("Amount:");
@@ -72,8 +68,6 @@ public class Inventory extends Stage {
 			amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
 			inventoryTBV.getColumns().addAll(nameCol, unitCol, amountCol);
-
-			inventoryTBV.setItems(inventoryData.getInventoryData());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -84,6 +78,29 @@ public class Inventory extends Stage {
 			AddIngredient addWindow = new AddIngredient();
 			addWindow.show();
 		});
+		
+		modifyIngredientsBtn.setOnAction(event->
+		{
+			ModifyIngredient modWindow = new ModifyIngredient();
+			modWindow.show();
+		});
+		
+		updateTable.setOnAction(event->
+		{	
+			
+			TableColumn nameCol = new TableColumn("Name:");
+			TableColumn unitCol = new TableColumn("Unit:");
+			TableColumn amountCol = new TableColumn("Amount:");
+
+			nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+			unitCol.setCellValueFactory(new PropertyValueFactory<>("unit"));
+			amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+			inventoryTBV.getColumns().setAll(nameCol, unitCol, amountCol);
+			
+
+			inventoryTBV.setItems(inventoryData.getInventoryData());
+		});
 
 		listBTN.setOnAction(event -> {
 			try {
@@ -93,6 +110,7 @@ public class Inventory extends Stage {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.close();
 		});
 
 		closeBTN.setOnAction(event -> {
@@ -103,14 +121,17 @@ public class Inventory extends Stage {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.close();
 		});
 
 		menuBTN.setOnAction(event -> {
 			showMenu();
+			this.close();
 		});
 
 		delyBTN.setOnAction(event -> {
 			showOrders();
+			this.close();
 		});
 	}
 

@@ -51,17 +51,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="increBtn" layoutX="119.0" layoutY="340.0" mnemonicParsing="false" text="Aumentar ingrediente" AnchorPane.leftAnchor="124.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
       <Button fx:id="removeBtn" layoutX="356.0" layoutY="297.0" mnemonicParsing="false" text="Eliminar ingrediente" AnchorPane.rightAnchor="124.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="decreBtn" layoutX="346.0" layoutY="340.0" mnemonicParsing="false" text="Disminuir ingrediente" AnchorPane.rightAnchor="124.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -71,5 +61,11 @@
             <Image url="@LaCucharita.JPG" />
          </image>
       </ImageView>
+      <Button fx:id="modifyIngredientsBtn" layoutX="202.0" layoutY="340.0" mnemonicParsing="false" text="Modificar cantidad de ingrediente" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="202.0" />
+      <Button fx:id="updateTable" layoutX="476.0" layoutY="248.0" mnemonicParsing="false" text="Actualizar Tabla">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
