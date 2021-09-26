@@ -5,6 +5,8 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,11 +32,7 @@ public class Inventory extends Stage {
 
 	private Button addBtn;
 
-	private Button increBtn;
-
-	private Button removeBtn;
-
-	private Button decreBtn;
+	private Button removeBtn, modifyIngredientsBtn, updateTable;
 
 	private InventoryManager inventoryData;
 
@@ -55,11 +53,12 @@ public class Inventory extends Stage {
 			delyBTN = (Button) loader.getNamespace().get("delyBTN");
 			closeBTN = (Button) loader.getNamespace().get("closeBTN");
 			addBtn = (Button) loader.getNamespace().get("addBtn");
-			increBtn = (Button) loader.getNamespace().get("increBtn");
 			removeBtn = (Button) loader.getNamespace().get("removeBtn");
-			decreBtn = (Button) loader.getNamespace().get("decreBtn");
+			modifyIngredientsBtn = (Button) loader.getNamespace().get("modifyIngredientsBtn");
+			updateTable = (Button) loader.getNamespace().get("updateTable");
 
 			inventoryTBV = (TableView) loader.getNamespace().get("inventoryTBV");
+			inventoryTBV.setEditable(true);
 
 			init();
 
@@ -72,8 +71,7 @@ public class Inventory extends Stage {
 			amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
 			inventoryTBV.getColumns().addAll(nameCol, unitCol, amountCol);
-
-			inventoryTBV.setItems(inventoryData.getInventoryData());
+			updateTable();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -81,8 +79,34 @@ public class Inventory extends Stage {
 
 	public void init() {
 		addBtn.setOnAction(event -> {
-			AddIngredient addWindow = new AddIngredient();
+			AddIngredient addWindow = new AddIngredient(this);
 			addWindow.show();
+		});
+
+		removeBtn.setOnAction(event ->
+		{
+			inventoryData.removeIngredient(inventoryTBV.getSelectionModel().getSelectedIndex());
+		});
+
+		modifyIngredientsBtn.setOnAction(event -> {
+			if(inventoryTBV.getSelectionModel().getSelectedItem() != null)
+			{
+				Ingredients selectedIng = inventoryTBV.getSelectionModel().getSelectedItem();
+				ModifyIngredient modWindow = new ModifyIngredient(selectedIng, this);
+				modWindow.show();
+			}else
+			{
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error Dialog");
+				alert.setHeaderText("Error de ingreso");
+				alert.setContentText("Parece que no se ha seleccionado ningún ingrediente");
+				
+				alert.showAndWait();
+			}
+		});
+
+		updateTable.setOnAction(event -> {
+			updateTable();
 		});
 
 		listBTN.setOnAction(event -> {
@@ -93,6 +117,7 @@ public class Inventory extends Stage {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.close();
 		});
 
 		closeBTN.setOnAction(event -> {
@@ -103,14 +128,17 @@ public class Inventory extends Stage {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.close();
 		});
 
 		menuBTN.setOnAction(event -> {
 			showMenu();
+			this.close();
 		});
 
 		delyBTN.setOnAction(event -> {
 			showOrders();
+			this.close();
 		});
 	}
 
@@ -126,6 +154,21 @@ public class Inventory extends Stage {
 		Orders in = new Orders();
 		in.show();
 
+	}
+	
+	public void updateTable()
+	{
+		TableColumn nameCol = new TableColumn("Name:");
+		TableColumn unitCol = new TableColumn("Unit:");
+		TableColumn amountCol = new TableColumn("Amount:");
+
+		nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+		unitCol.setCellValueFactory(new PropertyValueFactory<>("unit"));
+		amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+		inventoryTBV.getColumns().setAll(nameCol, unitCol, amountCol);
+
+		inventoryTBV.setItems(inventoryData.getInventoryData());
 	}
 
 }

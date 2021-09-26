@@ -40,5 +40,14 @@ public class Ingredients {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-
+	
+	public void decreAmount(double dAmount)
+	{
+		this.amount -= dAmount;
+	}
+	
+	public void increAmount(double dAmount)
+	{
+		this.amount += dAmount;
+	}
 }

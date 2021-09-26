@@ -9,7 +9,6 @@ public class InventoryManager {
 	public static InventoryManager getInstance() {
 		if (instance == null) {
 			instance = new InventoryManager();
-			;
 		}
 
 		return instance;
@@ -31,5 +30,20 @@ public class InventoryManager {
 
 		Ingredients newIngredient = new Ingredients(name, unit, amount);
 		ingredients.add(newIngredient);
+	}
+	
+	public void removeIngredient(int ingIndex)
+	{
+		ingredients.remove(ingIndex);
+	}
+	
+	public void decreIngQuantity(int ingIndex, double amount)
+	{
+		ingredients.get(ingIndex).decreAmount(amount);
+	}
+	
+	public void increIngQuantity(int ingIndex, double amount)
+	{
+		ingredients.get(ingIndex).increAmount(amount);
 	}
 }
