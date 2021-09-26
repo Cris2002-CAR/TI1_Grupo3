@@ -32,6 +32,11 @@ public class InventoryManager {
 		ingredients.add(newIngredient);
 	}
 	
+	public void removeIngredient(int ingIndex)
+	{
+		ingredients.remove(ingIndex);
+	}
+	
 	public void decreIngQuantity(int ingIndex, double amount)
 	{
 		ingredients.get(ingIndex).decreAmount(amount);

@@ -1,13 +1,12 @@
 package ui;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Ingredients;
@@ -19,10 +18,19 @@ public class ModifyIngredient extends Stage
 	
 	private Button decreAmount, increAmount;
 	
-	private TextField amountInput, ingInput;
+	private TextField amountInput;
 	
-	public ModifyIngredient()
+	private Label ingBeingMod;
+	
+	private Ingredients ingredient;
+	
+	private Inventory inventory;
+	
+	public ModifyIngredient(Ingredients ingredient, Inventory inventory)
 	{
+		this.ingredient = ingredient;
+		this.inventory = inventory;
+		
 		try
 		{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyIngredients.fxml"));
@@ -36,7 +44,9 @@ public class ModifyIngredient extends Stage
 			decreAmount = (Button) loader.getNamespace().get("decreAmount");
 			increAmount = (Button) loader.getNamespace().get("increAmount");
 			amountInput = (TextField) loader.getNamespace().get("amountInput");
-			ingInput = (TextField) loader.getNamespace().get("ingInput");
+			
+			ingBeingMod = (Label) loader.getNamespace().get("ingBeingMod");
+			ingBeingMod.setText(ingredient.getName());
 			
 			init();
 		}catch(IOException ex)
@@ -49,34 +59,20 @@ public class ModifyIngredient extends Stage
 	{
 		decreAmount.setOnAction(event->
 		{
-			String ingredientName = ingInput.getText();
 			double amount = Double.parseDouble(amountInput.getText());
-			boolean ingFound = false;
+			ingredient.decreAmount(amount);
 			
-			for(int i = 0 ; inventoryData.getInventoryData().size() > i || !ingFound ; i++)
-			{
-				if(ingredientName.equals(inventoryData.getInventoryData().get(i).getName()))
-				{
-					ingFound = true;
-					inventoryData.decreIngQuantity(i, amount);
-				}
-			}
+			inventory.updateTable();
+			this.close();
 		});
 		
 		increAmount.setOnAction(event->
 		{
-			String ingredientName = ingInput.getText();
 			double amount = Double.parseDouble(amountInput.getText());
-			boolean ingFound = false;
+			ingredient.increAmount(amount);
 			
-			for(int i = 0 ; inventoryData.getInventoryData().size() > i || !ingFound ; i++)
-			{
-				if(ingredientName.equals(inventoryData.getInventoryData().get(i).getName()))
-				{
-					ingFound = true;
-					inventoryData.increIngQuantity(i, amount);
-				}
-			}
+			inventory.updateTable();
+			this.close();
 		});
 	}
 }

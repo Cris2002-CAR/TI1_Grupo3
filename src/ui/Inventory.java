@@ -5,6 +5,8 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -56,9 +58,10 @@ public class Inventory extends Stage {
 			updateTable = (Button) loader.getNamespace().get("updateTable");
 
 			inventoryTBV = (TableView) loader.getNamespace().get("inventoryTBV");
+			inventoryTBV.setEditable(true);
 
 			init();
-			
+
 			TableColumn nameCol = new TableColumn("Name:");
 			TableColumn unitCol = new TableColumn("Unit:");
 			TableColumn amountCol = new TableColumn("Amount:");
@@ -68,6 +71,7 @@ public class Inventory extends Stage {
 			amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
 			inventoryTBV.getColumns().addAll(nameCol, unitCol, amountCol);
+			updateTable();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -75,31 +79,34 @@ public class Inventory extends Stage {
 
 	public void init() {
 		addBtn.setOnAction(event -> {
-			AddIngredient addWindow = new AddIngredient();
+			AddIngredient addWindow = new AddIngredient(this);
 			addWindow.show();
 		});
-		
-		modifyIngredientsBtn.setOnAction(event->
+
+		removeBtn.setOnAction(event ->
 		{
-			ModifyIngredient modWindow = new ModifyIngredient();
-			modWindow.show();
+			inventoryData.removeIngredient(inventoryTBV.getSelectionModel().getSelectedIndex());
 		});
-		
-		updateTable.setOnAction(event->
-		{	
-			
-			TableColumn nameCol = new TableColumn("Name:");
-			TableColumn unitCol = new TableColumn("Unit:");
-			TableColumn amountCol = new TableColumn("Amount:");
 
-			nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-			unitCol.setCellValueFactory(new PropertyValueFactory<>("unit"));
-			amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+		modifyIngredientsBtn.setOnAction(event -> {
+			if(inventoryTBV.getSelectionModel().getSelectedItem() != null)
+			{
+				Ingredients selectedIng = inventoryTBV.getSelectionModel().getSelectedItem();
+				ModifyIngredient modWindow = new ModifyIngredient(selectedIng, this);
+				modWindow.show();
+			}else
+			{
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error Dialog");
+				alert.setHeaderText("Error de ingreso");
+				alert.setContentText("Parece que no se ha seleccionado ningún ingrediente");
+				
+				alert.showAndWait();
+			}
+		});
 
-			inventoryTBV.getColumns().setAll(nameCol, unitCol, amountCol);
-			
-
-			inventoryTBV.setItems(inventoryData.getInventoryData());
+		updateTable.setOnAction(event -> {
+			updateTable();
 		});
 
 		listBTN.setOnAction(event -> {
@@ -147,6 +154,21 @@ public class Inventory extends Stage {
 		Orders in = new Orders();
 		in.show();
 
+	}
+	
+	public void updateTable()
+	{
+		TableColumn nameCol = new TableColumn("Name:");
+		TableColumn unitCol = new TableColumn("Unit:");
+		TableColumn amountCol = new TableColumn("Amount:");
+
+		nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+		unitCol.setCellValueFactory(new PropertyValueFactory<>("unit"));
+		amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+		inventoryTBV.getColumns().setAll(nameCol, unitCol, amountCol);
+
+		inventoryTBV.setItems(inventoryData.getInventoryData());
 	}
 
 }

@@ -11,12 +11,20 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="amountInput" layoutX="126.0" layoutY="125.0" promptText="Cantidad a modificar" />
-      <Button fx:id="increAmount" layoutX="91.0" layoutY="187.0" mnemonicParsing="false" text="Aumentar" />
-      <Button fx:id="decreAmount" layoutX="242.0" layoutY="187.0" mnemonicParsing="false" text="Disminuir" />
-      <TextField fx:id="ingInput" layoutX="126.0" layoutY="84.0" promptText="Ingrediente a modificar" />
+      <TextField fx:id="amountInput" layoutX="116.0" layoutY="74.0" prefHeight="45.0" prefWidth="168.0" promptText="Cantidad a modificar">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Button fx:id="increAmount" layoutX="71.0" layoutY="135.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="90.0" text="Aumentar" AnchorPane.leftAnchor="71.0">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="decreAmount" layoutX="239.0" layoutY="135.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="90.0" text="Disminuir" AnchorPane.rightAnchor="71.0">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
       <Line endX="299.0" layoutX="101.0" layoutY="32.0" startX="-101.0" />
-      <Label text="Modificar Ingrediente">
+      <Label text="Modificar Ingrediente:">
          <font>
             <Font size="24.0" />
          </font>
@@ -26,5 +34,10 @@
             <Image url="@LaCucharita.JPG" />
          </image>
       </ImageView>
+      <Label fx:id="ingBeingMod" layoutX="239.0" prefHeight="35.0" prefWidth="162.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
