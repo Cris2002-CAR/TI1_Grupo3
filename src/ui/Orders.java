@@ -2,30 +2,37 @@ package ui;
 
 import java.io.IOException;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Deliveries;
+import model.DeliveriesManager;
 
 public class Orders extends Stage {
 
-	private Button listBTN;
+	private Button list;
 
-	private Button invBTN;
+	private Button inventory;
 
-	private Button menuBTN;
+	private Button menu;
 
 	private Button delyBTN;
 
-	private Button logOutBTN;
+	private Button out;
 
-	private TableView<?> deliveryListTBV;
+	private TableView<Deliveries> deliveryListTBV;
 
 	private Button changeStBTN;
 
 	private Button addDeliveryBTN;
+	
+	private DeliveriesManager deliveriesData;
 
 	public Orders() {
 
@@ -33,34 +40,56 @@ public class Orders extends Stage {
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Orders.fxml"));
 			Parent root = loader.load();
+			
+			deliveriesData = DeliveriesManager.getInstance();
 
 			Scene scene = new Scene(root, 600, 400);
 			setScene(scene);
 
-			listBTN = (Button) loader.getNamespace().get("listBTN");
-			invBTN = (Button) loader.getNamespace().get("invBTN");
-			menuBTN = (Button) loader.getNamespace().get("menuBTN");
+			list = (Button) loader.getNamespace().get("listBTN");
+			inventory = (Button) loader.getNamespace().get("invBTN");
+			menu = (Button) loader.getNamespace().get("menuBTN");
 			delyBTN = (Button) loader.getNamespace().get("delyBTN");
-			logOutBTN = (Button) loader.getNamespace().get("logOutBTN");
+			out = (Button) loader.getNamespace().get("closeBTN");
 			changeStBTN = (Button) loader.getNamespace().get("changeStBTN");
 			addDeliveryBTN = (Button) loader.getNamespace().get("addDeliveryBTN");
 
 			deliveryListTBV = (TableView) loader.getNamespace().get("deliveryListTBV");
 			
+			///////////////////////////////////////////
+			
+			TableColumn<Deliveries, String> idCol = new TableColumn<>("ID");
+			TableColumn<Deliveries, String>  orderCol = new TableColumn<>("Pedido");
+			TableColumn<Deliveries, String>  amountCol = new TableColumn<>("Cantidad");
+			TableColumn<Deliveries, String>  stateCol = new TableColumn<>("Estado");
+			TableColumn<Deliveries, String>  dateCol = new TableColumn<>("Fecha");
+			
+			idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+			orderCol.setCellValueFactory(new PropertyValueFactory<>("order"));
+			amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+			stateCol.setCellValueFactory(new PropertyValueFactory<>("state"));
+			dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+		
+			deliveryListTBV.getColumns().addAll(idCol, orderCol, amountCol, stateCol, dateCol);
+			
+			deliveryListTBV.setItems(deliveriesData.getDeliveriesData());
+
 			init();
 
-		} catch (Exception ex) {
+
+		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 	}
 
 	private void init() {
 
-		invBTN.setOnAction(event -> {
+
+		inventory.setOnAction(event -> {
 			showInventory();
 		});
 
-		listBTN.setOnAction(event -> {
+		list.setOnAction(event -> {
 			try {
 				Staff listt = new Staff();
 				listt.viewList();
@@ -70,7 +99,7 @@ public class Orders extends Stage {
 			}
 		});
 
-		logOutBTN.setOnAction(event -> {
+		out.setOnAction(event -> {
 			try {
 				Staff listt = new Staff();
 				listt.loadLogin();
@@ -80,23 +109,31 @@ public class Orders extends Stage {
 			}
 		});
 
-		menuBTN.setOnAction(event -> {
+		menu.setOnAction(event -> {
 			showMenu();
+		});
+		
+		addDeliveryBTN.setOnAction(event -> {
+			
+			AddDelivery add = new AddDelivery();
+			add.show();
 		});
 
 	}
+
 
 	public void showMenu() {
 
 		Menu in = new Menu();
 		in.show();
-
+		
 	}
 
 	public void showInventory() {
 
 		Inventory in = new Inventory();
 		in.show();
-	}
+		
 
+	}
 }
