@@ -1,6 +1,8 @@
 package model;
 
-public class Employee {
+import java.io.Serializable;
+
+public class Employee implements Serializable {
 
 	private String name;
 	private String id;
@@ -51,6 +53,10 @@ public class Employee {
 		this.password = password;
 	}
 	
+	public String toString() {
+		String mensaje=name+" "+id+" "+birthday;
+		return mensaje;
+	}
 	
 
 }
