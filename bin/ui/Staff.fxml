@@ -3,50 +3,51 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="68.0" layoutY="46.0" text="Agregar un empleado:">
+      <Label layoutX="171.0" layoutY="28.0" prefHeight="30.0" prefWidth="243.0" text="Register a employee">
          <font>
-            <Font size="24.0" />
+            <Font name="Agency FB" size="37.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="118.0" text="Nombre:">
+      <Label layoutX="171.0" layoutY="113.0" text="Name:">
          <font>
-            <Font size="14.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="206.0" text="Contraseña:">
+      <Label layoutX="139.0" layoutY="201.0" text="Password:">
          <font>
-            <Font size="14.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="56.0" layoutY="162.0" text="Cedula:">
+      <Label layoutX="200.0" layoutY="157.0" text="Id:">
          <font>
-            <Font size="14.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="252.0" text="Fecha de nacimiento:">
+      <Label layoutX="177.0" layoutY="248.0" text="Date:">
          <font>
-            <Font size="14.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="nameTF" layoutX="178.0" layoutY="116.0" />
-      <TextField fx:id="idTF" layoutX="188.0" layoutY="160.0" />
-      <TextField fx:id="passTF" layoutX="188.0" layoutY="204.0" />
-      <DatePicker fx:id="birthdayDT" layoutX="213.0" layoutY="250.0" />
-      <Button fx:id="registerBTN" layoutX="57.0" layoutY="330.0" mnemonicParsing="false" text="REGISTRAR EMPLEADO">
+      <TextField fx:id="nameTF" layoutX="262.0" layoutY="113.0" prefHeight="30.0" prefWidth="158.0" />
+      <TextField fx:id="idTFF" layoutX="262.0" layoutY="157.0" prefHeight="30.0" prefWidth="158.0" />
+      <DatePicker fx:id="birthdayDT" layoutX="254.0" layoutY="250.0" />
+      <Button fx:id="registerBTN" layoutX="135.0" layoutY="309.0" mnemonicParsing="false" onAction="#createAccount" text="Create account">
          <font>
-            <Font size="14.0" />
+            <Font size="19.0" />
          </font>
       </Button>
-      <Button fx:id="signBTN" layoutX="423.0" layoutY="330.0" mnemonicParsing="false" text="INICIAR SESIÓN">
+      <Button fx:id="signBTN" layoutX="323.0" layoutY="309.0" mnemonicParsing="false" onAction="#loadLogin" text="Log in">
          <font>
-            <Font size="14.0" />
+            <Font size="19.0" />
          </font>
       </Button>
+      <PasswordField fx:id="passTFF" layoutX="259.0" layoutY="201.0" prefHeight="30.0" prefWidth="164.0" />
    </children>
 </AnchorPane>
