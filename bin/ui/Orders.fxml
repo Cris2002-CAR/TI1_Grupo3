@@ -21,7 +21,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="mernu" mnemonicParsing="false" text="Menu">
+            <Button fx:id="menu" mnemonicParsing="false" text="Menu">
                <font>
                   <Font size="16.0" />
                </font>

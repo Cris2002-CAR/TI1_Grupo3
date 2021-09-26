@@ -46,11 +46,11 @@ public class Orders extends Stage {
 			Scene scene = new Scene(root, 600, 400);
 			setScene(scene);
 
-			list = (Button) loader.getNamespace().get("listBTN");
-			inventory = (Button) loader.getNamespace().get("invBTN");
-			menu = (Button) loader.getNamespace().get("menuBTN");
+			list = (Button) loader.getNamespace().get("list");
+			inventory = (Button) loader.getNamespace().get("inventory");
+			menu = (Button) loader.getNamespace().get("menu");
 			delyBTN = (Button) loader.getNamespace().get("delyBTN");
-			out = (Button) loader.getNamespace().get("closeBTN");
+			out = (Button) loader.getNamespace().get("out");
 			changeStBTN = (Button) loader.getNamespace().get("changeStBTN");
 			addDeliveryBTN = (Button) loader.getNamespace().get("addDeliveryBTN");
 
