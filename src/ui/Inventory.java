@@ -1,5 +1,14 @@
 package ui;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
@@ -10,7 +19,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Ingredients;
@@ -30,7 +38,7 @@ public class Inventory extends Stage {
 
 	private Button addBtn;
 
-	private Button removeBtn, modifyIngredientsBtn, updateTable;
+	private Button removeBtn, modifyIngredientsBtn, updateTable, orderTable, expInvBtn;
 
 	private InventoryManager inventoryData;
 
@@ -53,6 +61,8 @@ public class Inventory extends Stage {
 			removeBtn = (Button) loader.getNamespace().get("removeBtn");
 			modifyIngredientsBtn = (Button) loader.getNamespace().get("modifyIngredientsBtn");
 			updateTable = (Button) loader.getNamespace().get("updateTable");
+			orderTable = (Button) loader.getNamespace().get("orderTable");
+			expInvBtn = (Button) loader.getNamespace().get("expInvBtn");
 
 			inventoryTBV = (TableView) loader.getNamespace().get("inventoryTBV");
 			inventoryTBV.setEditable(true);
@@ -101,9 +111,19 @@ public class Inventory extends Stage {
 				alert.showAndWait();
 			}
 		});
+		
+		orderTable.setOnAction(event->
+		{
+			inventoryData.selectionSortIngredients();
+		});
 
 		updateTable.setOnAction(event -> {
 			updateTable();
+		});
+		
+		expInvBtn.setOnAction(event->
+		{
+			exportInventory();
 		});
 
 		listBTN.setOnAction(event -> {
@@ -166,6 +186,22 @@ public class Inventory extends Stage {
 		inventoryTBV.getColumns().setAll(nameCol, unitCol, amountCol);
 
 		inventoryTBV.setItems(inventoryData.getInventoryData());
+	}
+	
+	public void exportInventory()
+	{
+		String report = inventoryData.dataToExport();
+		
+		try {
+			BufferedWriter bw = new BufferedWriter(inventoryData.getFW());
+			
+			bw.write(inventoryData.dataToExport());
+			bw.flush();
+			
+		} catch (IOException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}
 	}
 
 }

@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
@@ -29,7 +30,7 @@ public class Menu extends Stage {
 
 	private Button addDishBTN;
 
-	private Button deleteDishBTN;
+	private Button deleteDishBTN, expMenuBtn;
 	
 	private DishManager menuData;
 
@@ -51,6 +52,7 @@ public class Menu extends Stage {
 			closeBTN = (Button) loader.getNamespace().get("closeBTN");
 			addDishBTN = (Button) loader.getNamespace().get("addDishBTN");
 			deleteDishBTN = (Button) loader.getNamespace().get("deleteDishBTN");
+			expMenuBtn = (Button) loader.getNamespace().get("expMenuBtn");
 
 			listMenuTBV = (TableView) loader.getNamespace().get("listMenuTBV");
 			listMenuTBV.setEditable(true);
@@ -86,6 +88,11 @@ public class Menu extends Stage {
 		{
 			int selectedDish = listMenuTBV.getSelectionModel().getSelectedIndex();
 			menuData.removeDish(selectedDish);
+		});
+		
+		expMenuBtn.setOnAction(event->
+		{
+			exportMenu();
 		});
 
 		listBTN.setOnAction(event -> {
@@ -137,4 +144,21 @@ public class Menu extends Stage {
 		AddDish add = new AddDish();
 		add.show();
 	}
+	
+	public void exportMenu()
+	{
+		String report = menuData.dataToExport();
+		
+		try {
+			BufferedWriter bw = new BufferedWriter(menuData.getFW());
+			
+			bw.write(menuData.dataToExport());
+			bw.flush();
+			
+		} catch (IOException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}
+	}
+	
 }

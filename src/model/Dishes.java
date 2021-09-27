@@ -58,4 +58,9 @@ public class Dishes {
 		}
 		return ingredients;
 	}
+	
+	public String toString()
+	{
+		return name + ":" + price + ":" + ingNames + ";";
+	}
 }

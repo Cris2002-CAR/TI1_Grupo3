@@ -69,5 +69,11 @@
          </font>
       </Button>
       <Circle fill="#ff9226" layoutX="580.0" layoutY="77.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button fx:id="orderTable" layoutX="8.0" layoutY="248.0" mnemonicParsing="false" text="Organizar Tabla">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="expInvBtn" layoutX="8.0" layoutY="366.0" mnemonicParsing="false" text="Exportar Inventario" />
    </children>
 </AnchorPane>

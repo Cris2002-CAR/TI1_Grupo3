@@ -53,6 +53,6 @@ public class Ingredients {
 	
 	public String toString()
 	{
-		return name + " " + amount + " " + unit;
+		return name + "-" + unit + "-" + amount + ";";
 	}
 }
