@@ -3,11 +3,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="44.0" prefWidth="394.0">
          <children>
@@ -43,16 +46,22 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="listMenuTBV" layoutX="198.0" layoutY="100.0" prefHeight="200.0" prefWidth="205.0" />
-      <Button fx:id="addDishBTN" layoutX="82.0" layoutY="337.0" mnemonicParsing="false" text="Agregar Platillo">
+      <TableView fx:id="listMenuTBV" layoutX="103.0" layoutY="91.0" prefHeight="200.0" prefWidth="394.0" AnchorPane.leftAnchor="103.0" AnchorPane.rightAnchor="103.0" />
+      <Button fx:id="addDishBTN" layoutX="103.0" layoutY="322.0" mnemonicParsing="false" text="Agregar Platillo">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="deleteDishBTN" layoutX="377.0" layoutY="337.0" mnemonicParsing="false" text="Eliminar Platillo">
+      <Button fx:id="deleteDishBTN" layoutX="384.0" layoutY="322.0" mnemonicParsing="false" text="Eliminar Platillo">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <ImageView fitHeight="69.0" fitWidth="101.0" layoutX="313.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0">
+         <image>
+            <Image url="@LaCucharita.JPG" />
+         </image>
+      </ImageView>
+      <Circle fill="#ff9226" layoutX="584.0" layoutY="80.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>

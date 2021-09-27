@@ -50,4 +50,9 @@ public class Ingredients {
 	{
 		this.amount += dAmount;
 	}
+	
+	public String toString()
+	{
+		return name + " " + amount + " " + unit;
+	}
 }
