@@ -63,5 +63,10 @@
          </image>
       </ImageView>
       <Circle fill="#ff9226" layoutX="584.0" layoutY="80.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button fx:id="expMenuBtn" layoutY="364.0" mnemonicParsing="false" text="Exportar Menu">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
