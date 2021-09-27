@@ -20,8 +20,6 @@ public class Inventory extends Stage {
 
 	private Button listBTN;
 
-	private Button invBTN;
-
 	private Button menuBTN;
 
 	private Button delyBTN;
@@ -48,7 +46,6 @@ public class Inventory extends Stage {
 			setScene(scene);
 
 			listBTN = (Button) loader.getNamespace().get("listBTN");
-			invBTN = (Button) loader.getNamespace().get("invBTN");
 			menuBTN = (Button) loader.getNamespace().get("menuBTN");
 			delyBTN = (Button) loader.getNamespace().get("delyBTN");
 			closeBTN = (Button) loader.getNamespace().get("closeBTN");

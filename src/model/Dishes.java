@@ -1,23 +1,28 @@
 package model;
 
-public class Dishes {
-	
-	private String name;
-	private int price;
-	private double amount;
-	private Ingredients ingredient;
-	
-	public Dishes() {
-		
-		
-	}
+import java.util.ArrayList;
 
-	public Dishes(String name, int price, double amount, Ingredients ingredient) {
+public class Dishes {
+
+	private String name;
+	private double price;
+	private String ingNames;
+	private ArrayList<Ingredients> dishIngredients;
+	private ArrayList<String> ingsNames;
+
+	public Dishes(String name, double price, ArrayList<Ingredients> ingredients) {
 		super();
 		this.name = name;
 		this.price = price;
-		this.amount = amount;
-		this.ingredient = ingredient;
+		this.dishIngredients = ingredients;
+		ingsNames = new ArrayList<>();
+		
+		for(int i = 0 ; i < ingredients.size() ; i++)
+		{
+			ingsNames.add(ingredients.get(i).getName());
+		}
+		
+		ingNames = getIngNames();
 	}
 
 	public String getName() {
@@ -28,7 +33,7 @@ public class Dishes {
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
@@ -36,22 +41,21 @@ public class Dishes {
 		this.price = price;
 	}
 
-	public double getAmount() {
-		return amount;
+	public ArrayList<Ingredients> getIngredient() {
+		return dishIngredients;
 	}
 
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-
-	public Ingredients getIngredient() {
-		return ingredient;
-	}
-
-	public void setIngredient(Ingredients ingredient) {
-		this.ingredient = ingredient;
+	public void setIngredient(ArrayList<Ingredients> ingredients) {
+		this.dishIngredients = ingredients;
 	}
 	
-	
-
+	public String getIngNames()
+	{
+		String ingredients = "";
+		for(int i = 0 ; i < ingsNames.size() ; i++)
+		{
+			ingredients += ingsNames.get(i) + ", ";
+		}
+		return ingredients;
+	}
 }

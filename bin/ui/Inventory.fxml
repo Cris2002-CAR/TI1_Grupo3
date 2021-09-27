@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
@@ -67,5 +68,6 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <Circle fill="#ff9226" layoutX="580.0" layoutY="77.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>
